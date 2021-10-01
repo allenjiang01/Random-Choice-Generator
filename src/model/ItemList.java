@@ -5,7 +5,6 @@ import java.util.HashMap;
 public class ItemList {
 
     public HashMap<String, Item> list;
-    public Item item;
 
     // MODIFIES: this
     // EFFECTS: create a new item list
@@ -16,26 +15,25 @@ public class ItemList {
     // MODIFIES: this
     // EFFECTS: adds a new item
     public void addItem(String name) {
-        item = new Item(name);
-        list.put(String.valueOf(list.size()), item);
+        Item i = new Item(name);
+        list.put(String.valueOf(list.size()), i);
     }
 
     // MODIFIES: this
     // EFFECTS: deletes an item
     public void deleteItem(String name) {
-            list.remove(name);
-                int index = Integer.parseInt(name);
+        list.remove(name);
+        int index = Integer.parseInt(name);
+//        System.out.println("Index is: " + index);
+//        System.out.println("Size of list: " + list.size());
 
 
-                String finalItem = "";
 
-                for (int i = index + 1; i < list.size(); i++) {
-                    String key = String.valueOf(i);
-                    finalItem = key;
-                    list.put(String.valueOf(i - 1), list.get(key));
-                }
-
-                list.remove(finalItem);
+        for (int i = index; i < list.size(); i++) {
+            String nextKey = String.valueOf(i+1);
+            list.put(String.valueOf(i), list.get(nextKey));
+            list.remove(nextKey);
+        }
 
     }
 

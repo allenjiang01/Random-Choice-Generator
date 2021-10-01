@@ -75,7 +75,7 @@ public class Gui extends JFrame implements ActionListener {
     public void refreshPanel() {
         panel.removeAll();
             for (Map.Entry<String, Item> entry : itemList.getList().entrySet()) {
-                JLabel label = new JLabel(" " + entry.getKey() + "." + " " + entry.getValue().item);
+                JLabel label = new JLabel(" " + entry.getKey() + "." + " " + entry.getValue().name);
                 label.setForeground(Color.CYAN);
                 panel.add(label);
             }
@@ -201,6 +201,7 @@ public class Gui extends JFrame implements ActionListener {
                 String s = deleteTextField.getText();
                 itemList.deleteItem(s);
                 panel.setVisible(false);
+                panel.setVisible(true);
                 returnToMenu();
             } catch (NumberFormatException exception) {
                 panel.setVisible(false);
@@ -223,7 +224,7 @@ public class Gui extends JFrame implements ActionListener {
 
         if (itemList.getList().size() != 0) {
             int i = getRandomIndex();
-            String s = itemList.list.get(String.valueOf(i)).item;
+            String s = itemList.list.get(String.valueOf(i)).name;
             JLabel label = new JLabel(s, JLabel.CENTER);
             label.setAlignmentX(0);
             label.setAlignmentY(0);
